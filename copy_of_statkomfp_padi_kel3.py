@@ -454,7 +454,7 @@ st.write("Masukkan data untuk prediksi:")
 # Input features for prediction
 luas_panen = st.number_input("Luas Panen (ha):", min_value=0.0, step=0.1)
 produksi_padi = st.number_input("Produksi Padi (ton/ha):", min_value=0.0, step=0.1)
-hari_hujan = st.number_input("Hari Hujan (hari):", min_value=0, step=1)
+hari_hujan = st.number_input("Hari Hujan (hari):", min_value=0.0, step=0.1)
 curah_hujan = st.number_input("Curah Hujan (mm):", min_value=0.0, step=0.1)
 luas_lahan = st.number_input("Luas Lahan (ha):", min_value=0.0, step=0.1)
 tenaga_kerja = st.number_input("Tenaga Kerja (orang):", min_value=0, step=1)
