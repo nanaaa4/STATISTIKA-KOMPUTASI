@@ -477,35 +477,38 @@ def user_input_and_predict():
         elif 'jumlah_penduduk' in feature:
             user_input['jumlah_penduduk'] = st.number_input(f"Masukkan {feature}", min_value=0.0, format="%.2f")
 
-    # Klasifikasi data input user
-    user_input['luas_panen'] = klasifikasi_luas_panen(user_input['luas_panen'])
-    user_input['produksi_padi'] = klasifikasi_produksi_padi(user_input['produksi_padi'])
-    user_input['hari_hujan'] = klasifikasi_hari_hujan(user_input['hari_hujan'])
-    user_input['curah_hujan'] = klasifikasi_curah_hujan(user_input['curah_hujan'])
-    user_input['luas_lahan'] = klasifikasi_luas_lahan(user_input['luas_lahan'])
-    user_input['tenaga_kerja'] = klasifikasi_tenaga_kerja(user_input['tenaga_kerja'])
-    user_input['jumlah_penduduk'] = klasifikasi_jumlah_penduduk(user_input['jumlah_penduduk'])
+    # Menambahkan tombol untuk melakukan prediksi
+    if st.button("Prediksi Produktivitas Padi"):
+        # Klasifikasi data input user
+        user_input['luas_panen'] = klasifikasi_luas_panen(user_input['luas_panen'])
+        user_input['produksi_padi'] = klasifikasi_produksi_padi(user_input['produksi_padi'])
+        user_input['hari_hujan'] = klasifikasi_hari_hujan(user_input['hari_hujan'])
+        user_input['curah_hujan'] = klasifikasi_curah_hujan(user_input['curah_hujan'])
+        user_input['luas_lahan'] = klasifikasi_luas_lahan(user_input['luas_lahan'])
+        user_input['tenaga_kerja'] = klasifikasi_tenaga_kerja(user_input['tenaga_kerja'])
+        user_input['jumlah_penduduk'] = klasifikasi_jumlah_penduduk(user_input['jumlah_penduduk'])
 
-    # Mengkode data input user
-    user_input['luas_panen'] = encode_luas(user_input['luas_panen'])
-    user_input['produksi_padi'] = encode_produksi(user_input['produksi_padi'])
-    user_input['hari_hujan'] = encode_hari_hujan(user_input['hari_hujan'])
-    user_input['curah_hujan'] = encode_curah_hujan(user_input['curah_hujan'])
-    user_input['luas_lahan'] = encode_luas_lahan(user_input['luas_lahan'])
-    user_input['tenaga_kerja'] = encode_tenaga_kerja(user_input['tenaga_kerja'])
-    user_input['jumlah_penduduk'] = encode_jumlah_penduduk(user_input['jumlah_penduduk'])
+        # Mengkode data input user
+        user_input['luas_panen'] = encode_luas(user_input['luas_panen'])
+        user_input['produksi_padi'] = encode_produksi(user_input['produksi_padi'])
+        user_input['hari_hujan'] = encode_hari_hujan(user_input['hari_hujan'])
+        user_input['curah_hujan'] = encode_curah_hujan(user_input['curah_hujan'])
+        user_input['luas_lahan'] = encode_luas_lahan(user_input['luas_lahan'])
+        user_input['tenaga_kerja'] = encode_tenaga_kerja(user_input['tenaga_kerja'])
+        user_input['jumlah_penduduk'] = encode_jumlah_penduduk(user_input['jumlah_penduduk'])
 
-    # Prediksi hasil Naive Bayes untuk data input user
-    features = ['luas_panen', 'produksi_padi', 'hari_hujan', 'curah_hujan', 'luas_lahan', 'tenaga_kerja', 'jumlah_penduduk']
-    prior = {}
-    likelihoods = {}
-    posteriors = predict_naive_bayes(user_input, prior, likelihoods, features)
-    prediksi = max(posteriors, key=posteriors.get)
+        # Prediksi hasil Naive Bayes untuk data input user
+        features = ['luas_panen', 'produksi_padi', 'hari_hujan', 'curah_hujan', 'luas_lahan', 'tenaga_kerja', 'jumlah_penduduk']
+        prior = {}
+        likelihoods = {}
+        posteriors = predict_naive_bayes(user_input, prior, likelihoods, features)
+        prediksi = max(posteriors, key=posteriors.get)
 
-    # Output hasil prediksi
-    st.write("=" * 50)
-    st.write(f"Prediksi Produktivitas Padi: {'Tinggi' if prediksi == 1 else 'Rendah'}")
-    st.write("=" * 50)
+        # Output hasil prediksi
+        st.write("=" * 50)
+        st.write(f"Prediksi Produktivitas Padi: {'Tinggi' if prediksi == 1 else 'Rendah'}")
+        st.write("=" * 50)
 
 # Memanggil fungsi di Streamlit
 user_input_and_predict()
+
