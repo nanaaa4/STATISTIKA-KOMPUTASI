@@ -443,7 +443,7 @@ def encode_jumlah_penduduk(value): return value
 
 # Fungsi Naive Bayes (placeholder)
 def predict_naive_bayes(user_input, prior, likelihoods, features):
-    return {0: 0.3, 1: 0.7}  # Contoh hasil prediksi
+    return {0: 0.7, 1: 0.3}  # Contoh hasil prediksi
 
 import streamlit as st
 
@@ -492,7 +492,7 @@ if st.button("Prediksi"):
     user_input['jumlah_penduduk'] = encode_jumlah_penduduk(user_input['jumlah_penduduk'])
 
     # Example placeholders for prior and likelihoods (to be calculated with training data)
-    prior = pd.Series([0.3, 0.7], index=[0, 1])  # Example: 50% chance for each class
+    prior = pd.Series([0.7, 0.3], index=[0, 1])  # Example: 50% chance for each class
     likelihoods = {}  # Placeholder for likelihoods based on the model
     features = ['luas_panen', 'produksi_padi', 'hari_hujan', 'curah_hujan', 'luas_lahan', 'tenaga_kerja', 'jumlah_penduduk']
 
