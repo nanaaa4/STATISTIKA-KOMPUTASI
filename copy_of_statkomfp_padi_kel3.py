@@ -467,15 +467,15 @@ def user_input_and_predict():
         elif 'produksi_padi' in feature:
             user_input['produksi_padi'] = st.number_input(f"Masukkan {feature}", min_value=0.0, format="%.2f")
         elif 'hari_hujan' in feature:
-            user_input['hari_hujan'] = st.number_input(f"Masukkan {feature}", min_value=0, format="%.2f")
+            user_input['hari_hujan'] = st.number_input(f"Masukkan {feature}", min_value=0.0, format="%.2f")
         elif 'curah_hujan' in feature:
             user_input['curah_hujan'] = st.number_input(f"Masukkan {feature}", min_value=0.0, format="%.2f")
         elif 'luas_lahan' in feature:
             user_input['luas_lahan'] = st.number_input(f"Masukkan {feature}", min_value=0.0, format="%.2f")
         elif 'tenaga_kerja' in feature:
-            user_input['tenaga_kerja'] = st.number_input(f"Masukkan {feature}", min_value=0, format="%.2f")
+            user_input['tenaga_kerja'] = st.number_input(f"Masukkan {feature}", min_value=0.0, format="%.2f")
         elif 'jumlah_penduduk' in feature:
-            user_input['jumlah_penduduk'] = st.number_input(f"Masukkan {feature}", min_value=0, format="%.2f")
+            user_input['jumlah_penduduk'] = st.number_input(f"Masukkan {feature}", min_value=0.0, format="%.2f")
 
     # Klasifikasi data input user
     user_input['luas_panen'] = klasifikasi_luas_panen(user_input['luas_panen'])
