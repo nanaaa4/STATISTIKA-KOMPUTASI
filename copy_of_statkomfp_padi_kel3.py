@@ -422,7 +422,6 @@ print(f"Akurasi model Naive Bayes: {akurasi:.2f}%")
 
 """# User Input"""
 
-#import streamlit
 import streamlit as st
 
 # Fungsi untuk klasifikasi dan encoding (placeholder, sesuaikan dengan kebutuhan)
@@ -434,42 +433,49 @@ def klasifikasi_luas_lahan(value): return "Kategori"
 def klasifikasi_tenaga_kerja(value): return "Kategori"
 def klasifikasi_jumlah_penduduk(value): return "Kategori"
 
-def encode_luas(value): return 1
-def encode_produksi(value): return 1
-def encode_hari_hujan(value): return 1
-def encode_curah_hujan(value): return 1
-def encode_luas_lahan(value): return 1
-def encode_tenaga_kerja(value): return 1
-def encode_jumlah_penduduk(value): return 1
+def encode_luas(value): return value
+def encode_produksi(value): return value
+def encode_hari_hujan(value): return value
+def encode_curah_hujan(value): return value
+def encode_luas_lahan(value): return value
+def encode_tenaga_kerja(value): return value
+def encode_jumlah_penduduk(value): return value
 
+# Fungsi Naive Bayes (placeholder)
 def predict_naive_bayes(user_input, prior, likelihoods, features):
-    # Placeholder untuk fungsi prediksi
-    return {"Rendah": 0.3, "Tinggi": 0.7}
+    return {0: 0.3, 1: 0.7}  # Contoh hasil prediksi
 
-# Streamlit Interface
-st.title("Prediksi Produktivitas Padi")
-st.write("Masukkan data untuk prediksi:")
+# Fungsi untuk mendapatkan input dari user dan membuat prediksi
+def user_input_and_predict():
+    user_input = {}
+    features = [
+        'luas_panen (ha)',
+        'produksi_padi (ton/ha)',
+        'hari_hujan (hari)',
+        'curah_hujan (mm)',
+        'luas_lahan (ha)',
+        'tenaga_kerja (orang)',
+        'jumlah_penduduk (orang)'
+    ]
 
-# Input fitur untuk prediksi
-luas_panen = st.number_input("Luas Panen (ha):", min_value=0.0, step=0.1)
-produksi_padi = st.number_input("Produksi Padi (ton/ha):", min_value=0.0, step=0.1)
-hari_hujan = st.number_input("Hari Hujan (hari):", min_value=0, step=1)
-curah_hujan = st.number_input("Curah Hujan (mm):", min_value=0.0, step=0.1)
-luas_lahan = st.number_input("Luas Lahan (ha):", min_value=0.0, step=0.1)
-tenaga_kerja = st.number_input("Tenaga Kerja (orang):", min_value=0, step=1)
-jumlah_penduduk = st.number_input("Jumlah Penduduk (orang):", min_value=0, step=1)
+    st.title("Prediksi Produktivitas Padi")
 
-# Tombol untuk melakukan prediksi
-if st.button("Prediksi"):
-    user_input = {
-        'luas_panen': luas_panen,
-        'produksi_padi': produksi_padi,
-        'hari_hujan': hari_hujan,
-        'curah_hujan': curah_hujan,
-        'luas_lahan': luas_lahan,
-        'tenaga_kerja': tenaga_kerja,
-        'jumlah_penduduk': jumlah_penduduk,
-    }
+    # Mengambil input untuk setiap fitur menggunakan Streamlit
+    for feature in features:
+        if 'luas_panen' in feature:
+            user_input['luas_panen'] = st.number_input(f"Masukkan {feature}", min_value=0.0, format="%.2f")
+        elif 'produksi_padi' in feature:
+            user_input['produksi_padi'] = st.number_input(f"Masukkan {feature}", min_value=0.0, format="%.2f")
+        elif 'hari_hujan' in feature:
+            user_input['hari_hujan'] = st.number_input(f"Masukkan {feature}", min_value=0, format="%.0f")
+        elif 'curah_hujan' in feature:
+            user_input['curah_hujan'] = st.number_input(f"Masukkan {feature}", min_value=0.0, format="%.2f")
+        elif 'luas_lahan' in feature:
+            user_input['luas_lahan'] = st.number_input(f"Masukkan {feature}", min_value=0.0, format="%.2f")
+        elif 'tenaga_kerja' in feature:
+            user_input['tenaga_kerja'] = st.number_input(f"Masukkan {feature}", min_value=0, format="%.0f")
+        elif 'jumlah_penduduk' in feature:
+            user_input['jumlah_penduduk'] = st.number_input(f"Masukkan {feature}", min_value=0, format="%.0f")
 
     # Klasifikasi data input user
     user_input['luas_panen'] = klasifikasi_luas_panen(user_input['luas_panen'])
@@ -491,11 +497,15 @@ if st.button("Prediksi"):
 
     # Prediksi hasil Naive Bayes untuk data input user
     features = ['luas_panen', 'produksi_padi', 'hari_hujan', 'curah_hujan', 'luas_lahan', 'tenaga_kerja', 'jumlah_penduduk']
-    prior = {}  # Placeholder untuk prior
-    likelihoods = {}  # Placeholder untuk likelihoods
+    prior = {}
+    likelihoods = {}
     posteriors = predict_naive_bayes(user_input, prior, likelihoods, features)
     prediksi = max(posteriors, key=posteriors.get)
 
     # Output hasil prediksi
-    st.write("### Hasil Prediksi:")
-    st.write(f"**Prediksi Produktivitas Padi:** {'Rendah' if prediksi == 'Rendah' else 'Tinggi'}")
+    st.write("=" * 50)
+    st.write(f"Prediksi Produktivitas Padi: {'Tinggi' if prediksi == 1 else 'Rendah'}")
+    st.write("=" * 50)
+
+# Memanggil fungsi di Streamlit
+user_input_and_predict()
