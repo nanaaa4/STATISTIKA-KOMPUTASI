@@ -304,7 +304,7 @@ datasetTrain.head()
 
 datasetTest.head()
 
-"""Cek apakah ada data kosong di Data Trainig"""
+"""Cek apakah ada data kosong di Data Training"""
 
 datasetTrain.isnull().sum()
 
