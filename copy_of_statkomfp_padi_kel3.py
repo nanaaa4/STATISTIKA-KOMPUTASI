@@ -422,8 +422,6 @@ print(f"Akurasi model Naive Bayes: {akurasi:.2f}%")
 
 """# User Input"""
 
-!pip install streamlit
-
 #import streamlit
 import streamlit as st
 
