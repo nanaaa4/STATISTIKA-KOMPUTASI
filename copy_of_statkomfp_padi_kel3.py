@@ -499,6 +499,3 @@ if st.button("Prediksi"):
     # Output hasil prediksi
     st.write("### Hasil Prediksi:")
     st.write(f"**Prediksi Produktivitas Padi:** {'Rendah' if prediksi == 'Rendah' else 'Tinggi'}")
-
-# Memanggil fungsi
-user_input_and_predict()
