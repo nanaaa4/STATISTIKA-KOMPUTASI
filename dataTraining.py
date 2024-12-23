@@ -5,8 +5,6 @@ import streamlit as st
 datasetTrain = pd.read_csv('padi_produktifitas_training20 (1).csv', delimiter=';', encoding='utf-8')
 
 st.title('Informasi Dataset')
-st.write("### Info Dataset")
-#st.write(datasetTrain.info())
 
 st.write("### 5 Baris Pertama Dataset")
 st.write(datasetTrain.head())
