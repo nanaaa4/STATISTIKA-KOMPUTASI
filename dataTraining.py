@@ -196,9 +196,11 @@ likelihoods = {}
 for feature in features:
     likelihoods[feature] = {}
     for label in datasetTrain['produktivitas_padi'].unique():
-        likelihood = datasetTrain[datasetTrain['produktivitas_padi']] == [label][feature].value_counts(normalize=True)
-        likelihoods[feature][label] = likelihood.get(label, "Data tidak tersedia")
+        likelihood = datasetTrain[datasetTrain['produktivitas_padi'] == label][feature].value_counts(normalize=True)
+        likelihoods[feature][label] = likelihood
 
+        # print(f"\nP(fitur = {feature} | Produktivitas Padi = {label}):")
+        # print(likelihood)
 # Streamlit UI
 st.title('Probabilitas Prior dan Likelihood (Naive Bayes)')
 
