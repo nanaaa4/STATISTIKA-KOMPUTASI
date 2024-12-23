@@ -210,4 +210,4 @@ for i, row in datasetTest.iterrows():
 datasetTest['Prediksi Produktivitas Padi'] = prediksi_all
 
 # Menampilkan hasil prediksi
-datasetTest.head(12)
+st.dataframe(datasetTest.head(12))
