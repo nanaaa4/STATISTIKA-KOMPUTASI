@@ -26,7 +26,7 @@ import streamlit as st
 
 # Fungsi Prediksi menggunakan Naive Bayes
 def predict_naive_bayes(data_baru, prior, likelihoods, features):
-    posteriors = {} # Dictionary untuk menyimpan probabilitas posterior untuk setiap kelas
+    posteriors = {}  # Dictionary untuk menyimpan probabilitas posterior untuk setiap kelas
 
     # Loop melalui setiap kelas (misalnya 0 dan 1)
     for label in prior.index:
