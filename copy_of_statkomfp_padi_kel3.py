@@ -44,7 +44,7 @@ elif selection == "Classification & Encoding":
     st.title("Classification & Encoding")
     st.write("### Step 2: Classify Data into Categories")
 
-    # Classification and encoding functions
+    # Classification functions
     def klasifikasi_luas_panen(nilai):
         if nilai > 25180.91:
             return 3  # Besar
@@ -96,7 +96,7 @@ elif selection == "Classification & Encoding":
     st.write("#### Classified Testing Data")
     st.dataframe(datasetTest.head())
 
-    # Encode the data (like 'encode_luas')
+    # Encode the data
     def encode_produksi(produksi):
         if produksi == 'Rendah':
             return 1
