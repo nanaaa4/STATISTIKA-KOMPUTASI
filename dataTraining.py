@@ -2,18 +2,7 @@ import pandas as pd
 import streamlit as st
 from naive_bayes import data_baru, prior, likelihoods, features
 
-# Penanganan impor modul Naive Bayes
-try:
-    from naive_bayes import data_baru, prior, likelihoods, features
-except ImportError:
-    st.error("Modul 'naive_bayes' tidak ditemukan. Pastikan modul tersebut tersedia.")
-
-# Membaca dataset dengan penanganan error jika file tidak ditemukan
-try:
-    datasetTrain = pd.read_csv('padi_produktifitas_training20 (1).csv', delimiter=';', encoding='utf-8')
-except FileNotFoundError:
-    st.error("File dataset tidak ditemukan. Pastikan file 'padi_produktifitas_training20 (1).csv' tersedia.")
-    st.stop()
+datasetTrain = pd.read_csv('padi_produktifitas_training20 (1).csv', delimiter=';', encoding='utf-8')
 
 st.title('Informasi Dataset')
 st.write("### Info Dataset")
