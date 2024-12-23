@@ -1,8 +1,8 @@
 import pandas as pd
 import streamlit as st
 
-import streamlit as st
-import pandas as pd
+datasetTrain = pd.read_csv('padi_produktifitas_training20 (1).csv', delimiter=';', encoding='utf-8')
+datasetTest = pd.read_csv('padi_produktifitas_testing12 (1).csv', delimiter=';', encoding='utf-8')
 
 def clean_column(column):
     if column.dtype == 'object':
