@@ -6,7 +6,7 @@ datasetTrain = pd.read_csv('padi_produktifitas_training20 (1).csv', delimiter=';
 
 st.title('Informasi Dataset')
 st.write("### Info Dataset")
-st.write(datasetTrain.info())
+#st.write(datasetTrain.info())
 
 st.write("### 5 Baris Pertama Dataset")
 st.write(datasetTrain.head())
@@ -217,6 +217,3 @@ for feature in features:
         st.write(f"\n**P({feature} | Produktivitas Padi = {label}):**")
         st.write(likelihoods[feature].get(label, "Data tidak tersedia"))
 
-# Menampilkan button untuk mengecek hasil
-if st.button('Tampilkan Hasil Probabilitas'):
-    st.write("### Hasil Probabilitas sudah ditampilkan di atas.")
