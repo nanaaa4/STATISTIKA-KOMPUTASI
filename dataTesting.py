@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-from dataTraining import prior, likelihood
+from dataTraining import prior, likelihoods
 from naive_bayes import predict_naive_bayes
 
 datasetTest = pd.read_csv('padi_produktifitas_testing12 (1).csv', delimiter=';', encoding='utf-8')
