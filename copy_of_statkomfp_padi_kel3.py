@@ -44,7 +44,7 @@ elif selection == "Classification & Encoding":
     st.title("Classification & Encoding")
     st.write("### Step 2: Classify Data into Categories")
 
-    # Classification functions
+    # Classification functions (matching the logic of the original code)
     def klasifikasi_luas_panen(nilai):
         if nilai > 25180.91:
             return 3  # Besar
@@ -96,7 +96,7 @@ elif selection == "Classification & Encoding":
     st.write("#### Classified Testing Data")
     st.dataframe(datasetTest.head())
 
-    # Encode the data
+    # Encode the data (adjusted to match the original encoding logic)
     def encode_produksi(produksi):
         if produksi == 'Rendah':
             return 1
@@ -165,7 +165,7 @@ elif selection == "Model Training":
     st.write("#### Prior Probabilities")
     st.write(prior)
 
-    # Calculate likelihoods for each feature
+    # Calculate likelihoods for each feature (as in your original code)
     features = ['luas_panen', 'produksi_padi', 'hari_hujan', 'curah_hujan', 'luas_lahan', 'tenaga_kerja', 'jumlah_penduduk']
     likelihoods = {feature: {} for feature in features}
 
