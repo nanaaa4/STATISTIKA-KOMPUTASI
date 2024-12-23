@@ -188,14 +188,14 @@ st.write(datasetTest.head())
 st.write("### Mengecek Data Kosong di Dataset Testing")
 st.write(datasetTest.isnull().sum())
 
+features = ['luas_panen', 'produksi_padi', 'hari_hujan', 'curah_hujan', 'luas_lahan', 'tenaga_kerja', 'jumlah_penduduk']
+
 # Prediksi untuk seluruh datasetTesting
 prediksi_all = []
 for i, row in datasetTest.iterrows():
     # Ambil data baris sebagai dictionary
     data_baru = row[features].to_dict()
-
-    features = ['luas_panen', 'produksi_padi', 'hari_hujan', 'curah_hujan', 'luas_lahan', 'tenaga_kerja', 'jumlah_penduduk']
-
+    
     # Panggil fungsi prediksi untuk data_baru
     posteriors = predict_naive_bayes(datasetTest, prior, likelihoods, features)
 
