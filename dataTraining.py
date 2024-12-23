@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-from naive_bayes import data_baru, prior, likelihoods, features
+# from naive_bayes import data_baru, prior, likelihoods, features
 
 datasetTrain = pd.read_csv('padi_produktifitas_training20 (1).csv', delimiter=';', encoding='utf-8')
 
