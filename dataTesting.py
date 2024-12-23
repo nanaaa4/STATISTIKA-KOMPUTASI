@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-from naive_bayes import classify_class
+from naive_bayes import data_baru, prior, likelihoods, features
 
 datasetTest = pd.read_csv('padi_produktifitas_testing12 (1).csv', delimiter=';', encoding='utf-8')a
 
