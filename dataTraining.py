@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-from naive_bayes import classify_class
+from naive_bayes import data_baru, prior, likelihoods, features
 
 datasetTrain = pd.read_csv('padi_produktifitas_training20 (1).csv', delimiter=';', encoding='utf-8')
 
@@ -10,9 +10,6 @@ st.write(datasetTrain.info())
 
 st.write("### 5 Baris Pertama Dataset")
 st.write(datasetTrain.head())
-
-import streamlit as st
-import pandas as pd
 
 # Fungsi untuk membersihkan kolom
 def clean_columnTrain(column):
@@ -25,10 +22,6 @@ def clean_columnTrain(column):
         column = pd.to_numeric(column, errors='coerce')
     return column
 
-# Membaca dataset (sesuaikan dengan path dataset Anda)
-datasetTrain = pd.read_csv('path/to/your/dataset_train.csv')
-datasetTest = pd.read_csv('path/to/your/dataset_test.csv')
-
 # Streamlit UI
 st.title('Proses Pembersihan Data')
 st.write("### Dataset Training Awal")
@@ -36,7 +29,6 @@ st.write(datasetTrain.head())
 
 # Menghapus kolom yang tidak diperlukan
 datasetTrain.drop(columns=['no', 'kabupaten/kota'], inplace=True)
-datasetTest.drop(columns=['no', 'kabupaten/kota'], inplace=True)
 
 st.write("### Dataset Training Setelah Penghapusan Kolom")
 st.write(datasetTrain.head())
@@ -55,11 +47,6 @@ st.write("### Data Training Setelah Pembersihan")
 st.write(datasetTrain.dtypes)
 st.write(datasetTrain.head())
 
-import streamlit as st
-import pandas as pd
-
-# Membaca dataset (sesuaikan dengan path dataset Anda)
-datasetTrain = pd.read_csv('path/to/your/dataset_train.csv')
 
 # Fungsi klasifikasi untuk data
 def klasifikasi_luas_panen(nilai):
@@ -210,7 +197,7 @@ for feature in features:
     likelihoods[feature] = {}
     for label in datasetTrain['produktivitas_padi'].unique():
         likelihood = datasetTrain[datasetTrain['produktivitas_padi'] == label][feature].value_counts(normalize=True)
-        likelihoods[feature][label] = likelihood
+        likelihoods[feature][label] = likelihood.get(label, "Data tidak tersedia")
 
 # Streamlit UI
 st.title('Probabilitas Prior dan Likelihood (Naive Bayes)')
