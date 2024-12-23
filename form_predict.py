@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st 
-
+from dataTraining import prior, likelihoods
+from naive_bayes import predict_naive_bayes
 
 # Streamlit User Input and Prediction
 st.title('Prediksi Produktivitas Padi dengan Naive Bayes')
