@@ -185,3 +185,24 @@ st.write(datasetTest.head())
 # Mengecek apakah ada data kosong
 st.write("### Mengecek Data Kosong di Dataset Testing")
 st.write(datasetTest.isnull().sum())
+
+# Prediksi untuk seluruh datasetTesting
+prediksi_all = []
+for i, row in datasetTest.iterrows():
+    # Ambil data baris sebagai dictionary
+    data_baru = row[features].to_dict()
+
+    # Panggil fungsi prediksi untuk data_baru
+    posteriors = predict_naive_bayes(data_baru, prior, likelihoods, features)
+
+    # Ambil label dengan probabilitas tertinggi sebagai prediksi
+    prediksi = max(posteriors, key=posteriors.get)
+
+    # Simpan hasil prediksi
+    prediksi_all.append(prediksi)
+
+# Menambahkan hasil prediksi ke datasetTesting
+datasetTest['Prediksi Produktivitas Padi'] = prediksi_all
+
+# Menampilkan hasil prediksi
+datasetTest.head(12)
