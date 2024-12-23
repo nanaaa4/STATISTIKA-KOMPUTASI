@@ -40,19 +40,51 @@ if selection == "Data Loading & Cleaning":
     st.dataframe(datasetTest.head())
 
 # Classification & Encoding (Page 2)
-# Classification & Encoding (Page 2)
 elif selection == "Classification & Encoding":
     st.title("Classification & Encoding")
     st.write("### Step 2: Classify Data into Categories")
 
     # Classification and encoding functions (define them as in your code)
     def klasifikasi_luas_panen(nilai):
-        if nilai > 25180.91:
-            return 'Besar'
-        elif 12318.25 <= nilai <= 25180.91:
-            return 'Sedang'
+    if nilai > 25180.91:
+       return 3  # Besar
+    elif 12318.25 <= nilai <= 25180.91:
+       return 2  # Sedang
+    else:
+       return 1  # Kecil
+
+    def klasifikasi_produksi_padi(nilai):
+        if nilai > 139929.40:
+           return 3  # Banyak
+        elif 64838.4 <= nilai <= 139929.40:
+           return 2  # Sedang
         else:
-            return 'Kecil'
+           return 1  # Sedikit
+    
+    def klasifikasi_hari_hujan(nilai):
+        return 2 if nilai >= 16.1 else 1  # Tinggi/Rendah
+    
+    def klasifikasi_curah_hujan(nilai):
+        return 2 if nilai >= 246.8 else 1  # Tinggi/Rendah
+    
+    def klasifikasi_luas_lahan(nilai):
+        if nilai > 20745:
+           return 3  # Luas
+        elif 10866 <= nilai < 20745:
+           return 2  # Sedang
+        else:
+           return 1  # Kecil
+    
+    def klasifikasi_tenaga_kerja(nilai):
+        if nilai > 131801:
+           return 3  # Banyak
+        elif 78135 <= nilai <= 131801:
+           return 2  # Sedang
+        else:
+           return 1  # Sedikit
+    
+    def klasifikasi_jumlah_penduduk(nilai):
+        return 2 if nilai > 463936 else 1  # Padat/Tidak Padat
 
     # Apply classification on both training and testing datasets
     datasetTrain['luas_panen'] = datasetTrain['luas_panen'].apply(klasifikasi_luas_panen)
@@ -65,14 +97,61 @@ elif selection == "Classification & Encoding":
     st.dataframe(datasetTest.head())
 
     # Encode the data (like 'encode_luas')
-    def encode_luas(panen):
-        if panen == 'Kecil':
+    def encode_produksi(produksi):
+    # Example encoding function
+        if produksi == 'Rendah':
             return 1
-        elif panen == 'Sedang':
+        elif produksi == 'Sedang':
             return 2
-        elif panen == 'Besar':
+        elif produksi == 'Tinggi':
             return 3
-        return 0
+    return 0
+
+    def encode_hari_hujan(hari):
+        # Example encoding function
+        if hari < 50:
+            return 1
+        elif 50 <= hari < 100:
+            return 2
+        else:
+            return 3
+    
+    def encode_curah_hujan(curah):
+        # Example encoding function
+        if curah < 1000:
+            return 1
+        elif 1000 <= curah < 2000:
+            return 2
+        else:
+            return 3
+    
+    def encode_luas_lahan(luas):
+        # Example encoding function
+        if luas < 500:
+            return 1
+        elif 500 <= luas < 1000:
+            return 2
+        else:
+            return 3
+    
+    def encode_tenaga_kerja(tenaga):
+        # Example encoding function
+        if tenaga < 50:
+            return 1
+        elif 50 <= tenaga < 100:
+            return 2
+        else:
+            return 3
+    
+    def encode_jumlah_penduduk(jumlah):
+        # Example encoding function
+        if jumlah < 50000:
+            return 1
+        elif 50000 <= jumlah < 100000:
+            return 2
+        else:
+            return 3
+
 
     datasetTrain['luas_panen'] = datasetTrain['luas_panen'].apply(encode_luas)
     datasetTest['luas_panen'] = datasetTest['luas_panen'].apply(encode_luas)
@@ -83,7 +162,6 @@ elif selection == "Classification & Encoding":
     st.write("#### Encoded Testing Data")
     st.dataframe(datasetTest.head())
 
-# Model Training (Page 3)
 # Model Training (Page 3)
 elif selection == "Model Training":
     st.title("Model Training")
@@ -107,7 +185,6 @@ elif selection == "Model Training":
 
     st.write("#### Likelihoods Calculated Successfully")
 
-# Prediction & Evaluation (Page 4)
 # Prediction & Evaluation (Page 4)
 elif selection == "Prediction & Evaluation":
     st.title("Prediction & Evaluation")
