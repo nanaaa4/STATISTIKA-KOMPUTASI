@@ -196,7 +196,7 @@ likelihoods = {}
 for feature in features:
     likelihoods[feature] = {}
     for label in datasetTrain['produktivitas_padi'].unique():
-        likelihood = datasetTrain[datasetTrain['produktivitas_padi'] == label][feature].value_counts(normalize=True)
+        likelihood = datasetTrain[datasetTrain['produktivitas_padi']] == [label][feature].value_counts(normalize=True)
         likelihoods[feature][label] = likelihood.get(label, "Data tidak tersedia")
 
 # Streamlit UI
