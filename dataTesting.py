@@ -188,6 +188,7 @@ st.write(datasetTest.head())
 st.write("### Mengecek Data Kosong di Dataset Testing")
 st.write(datasetTest.isnull().sum())
 
+# Fitur yang digunakan dalam prediksi
 features = ['luas_panen', 'produksi_padi', 'hari_hujan', 'curah_hujan', 'luas_lahan', 'tenaga_kerja', 'jumlah_penduduk']
 
 # Prediksi untuk seluruh datasetTesting
@@ -195,9 +196,9 @@ prediksi_all = []
 for i, row in datasetTest.iterrows():
     # Ambil data baris sebagai dictionary
     data_baru = row[features].to_dict()
-    
+
     # Panggil fungsi prediksi untuk data_baru
-    posteriors = predict_naive_bayes(datasetTest, prior, likelihoods, features)
+    posteriors = predict_naive_bayes(data_baru, prior, likelihoods, features)
 
     # Ambil label dengan probabilitas tertinggi sebagai prediksi
     prediksi = max(posteriors, key=posteriors.get)
