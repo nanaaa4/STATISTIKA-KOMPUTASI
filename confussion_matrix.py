@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-from dataTesting import produktivitas_padi
+from dataTesting import produktivitas_padi, prediksi_all
 
 # Menampilkan Confusion Matrix
 matrix = confusion_matrix(datasetTest['produktivitas_padi'], datasetTest['Prediksi Produktivitas Padi'])
