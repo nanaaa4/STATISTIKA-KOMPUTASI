@@ -40,6 +40,7 @@ if selection == "Data Loading & Cleaning":
     st.dataframe(datasetTest.head())
 
 # Classification & Encoding (Page 2)
+# Classification & Encoding (Page 2)
 elif selection == "Classification & Encoding":
     st.title("Classification & Encoding")
     st.write("### Step 2: Classify Data into Categories")
@@ -71,6 +72,7 @@ elif selection == "Classification & Encoding":
             return 2
         elif panen == 'Besar':
             return 3
+        return 0
 
     datasetTrain['luas_panen'] = datasetTrain['luas_panen'].apply(encode_luas)
     datasetTest['luas_panen'] = datasetTest['luas_panen'].apply(encode_luas)
@@ -82,26 +84,30 @@ elif selection == "Classification & Encoding":
     st.dataframe(datasetTest.head())
 
 # Model Training (Page 3)
+# Model Training (Page 3)
 elif selection == "Model Training":
     st.title("Model Training")
     st.write("### Step 3: Train the Naive Bayes Model")
 
-    # Add Naive Bayes training process here
+    # Calculate prior probabilities
     prior = datasetTrain['produktivitas_padi'].value_counts(normalize=True)
     st.write("#### Prior Probabilities")
     st.write(prior)
 
-    # Calculate likelihoods
+    # Calculate likelihoods for each feature
     features = ['luas_panen', 'produksi_padi', 'hari_hujan', 'curah_hujan', 'luas_lahan', 'tenaga_kerja', 'jumlah_penduduk']
-    likelihoods = {}
+    likelihoods = {feature: {} for feature in features}
+
     for feature in features:
-        likelihoods[feature] = {}
         for label in datasetTrain['produktivitas_padi'].unique():
             likelihood = datasetTrain[datasetTrain['produktivitas_padi'] == label][feature].value_counts(normalize=True)
             likelihoods[feature][label] = likelihood
             st.write(f"#### P({feature} | Produktivitas Padi = {label})")
             st.write(likelihood)
 
+    st.write("#### Likelihoods Calculated Successfully")
+
+# Prediction & Evaluation (Page 4)
 # Prediction & Evaluation (Page 4)
 elif selection == "Prediction & Evaluation":
     st.title("Prediction & Evaluation")
@@ -135,6 +141,11 @@ elif selection == "Prediction & Evaluation":
 
     st.write("#### Predictions for Testing Data")
     st.dataframe(datasetTest[['luas_panen', 'produksi_padi', 'Prediksi Produktivitas Padi']].head())
+
+    # Evaluate the accuracy
+    correct_predictions = sum(datasetTest['produktivitas_padi'] == datasetTest['Prediksi Produktivitas Padi'])
+    accuracy = correct_predictions / len(datasetTest)
+    st.write(f"#### Accuracy: {accuracy * 100:.2f}%")
 
 # User Input Prediction (Page 5)
 elif selection == "User Input Prediction":
