@@ -1,5 +1,6 @@
 import pandas as pd
-import streamlit as st 
+import streamlit as st
+from dataTraining import klasifikasi_luas_panen, klasifikasi_produksi_padi, klasifikasi_hari_hujan, klasifikasi_curah_hujan, klasifikasi_luas_lahan, klasifikasi_tenaga_kerja, klasifikasi_jumlah_penduduk 
 from dataTraining import prior, likelihoods
 from naive_bayes import predict_naive_bayes
 
