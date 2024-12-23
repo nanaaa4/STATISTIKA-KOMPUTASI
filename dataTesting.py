@@ -1,8 +1,10 @@
 import pandas as pd
 import streamlit as st
+# from naive_bayes import classify_class
 
-datasetTest = pd.read_csv('padi_produktifitas_testing12 (1).csv', delimiter=';', encoding='utf-8')a
+datasetTest = pd.read_csv('padi_produktifitas_testing12 (1).csv', delimiter=';', encoding='utf-8')
 
+# Hapus saja kode ini
 st.title('Informasi Dataset')
 # st.write("### Info Dataset")
 # st.write(datasetTest.info())
@@ -185,23 +187,23 @@ st.write(datasetTest.head())
 st.write("### Mengecek Data Kosong di Dataset Testing")
 st.write(datasetTest.isnull().sum())
 
-# Prediksi untuk seluruh datasetTesting
-prediksi_all = []
-for i, row in datasetTest.iterrows():
-    # Ambil data baris sebagai dictionary
-    data_baru = row[features].to_dict()
+# # Prediksi untuk seluruh datasetTesting
+# prediksi_all = []
+# for i, row in datasetTest.iterrows():
+#     # Ambil data baris sebagai dictionary
+#     data_baru = row[features].to_dict()
 
-    # Panggil fungsi prediksi untuk data_baru
-    posteriors = predict_naive_bayes(data_baru, prior, likelihoods, features)
+#     # Panggil fungsi prediksi untuk data_baru
+#     posteriors = predict_naive_bayes(data_baru, prior, likelihoods, features)
 
-    # Ambil label dengan probabilitas tertinggi sebagai prediksi
-    prediksi = max(posteriors, key=posteriors.get)
+#     # Ambil label dengan probabilitas tertinggi sebagai prediksi
+#     prediksi = max(posteriors, key=posteriors.get)
 
-    # Simpan hasil prediksi
-    prediksi_all.append(prediksi)
+#     # Simpan hasil prediksi
+#     prediksi_all.append(prediksi)
 
-# Menambahkan hasil prediksi ke datasetTesting
-datasetTest['Prediksi Produktivitas Padi'] = prediksi_all
+# # Menambahkan hasil prediksi ke datasetTesting
+# datasetTest['Prediksi Produktivitas Padi'] = prediksi_all
 
-# Menampilkan hasil prediksi
-datasetTest.head(12)
+# # Menampilkan hasil prediksi
+# datasetTest.head(12)
