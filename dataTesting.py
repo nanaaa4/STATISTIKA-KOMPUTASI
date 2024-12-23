@@ -4,8 +4,8 @@ import streamlit as st
 datasetTest = pd.read_csv('padi_produktifitas_testing12 (1).csv', delimiter=';', encoding='utf-8')a
 
 st.title('Informasi Dataset')
-st.write("### Info Dataset")
-st.write(datasetTest.info())
+# st.write("### Info Dataset")
+# st.write(datasetTest.info())
 
 st.write("### 5 Baris Pertama Dataset")
 st.write(datasetTest.head())
