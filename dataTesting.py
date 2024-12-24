@@ -5,11 +5,7 @@ from naive_bayes import predict_naive_bayes
 
 datasetTest = pd.read_csv('padi_produktifitas_testing12 (1).csv', delimiter=';', encoding='utf-8')
 
-# Hapus saja kode ini
 st.title('Informasi Dataset')
-# st.write("### Info Dataset")
-# st.write(datasetTest.info())
-
 st.write("### 5 Baris Pertama Dataset")
 st.write(datasetTest.head())
 
@@ -24,7 +20,6 @@ def clean_columnTest(column):
         column = pd.to_numeric(column, errors='coerce')
     return column
 
-# Streamlit UI
 st.title('Proses Pembersihan Data')
 st.write("### Dataset Testing Awal")
 st.write(datasetTest.head())
@@ -48,7 +43,6 @@ datasetTest['jumlah_penduduk'] = clean_columnTest(datasetTest['jumlah_penduduk']
 st.write("### Data Testing Setelah Pembersihan")
 st.write(datasetTest.dtypes)
 st.write(datasetTest.head())
-
 
 # Fungsi klasifikasi untuk data
 def klasifikasi_luas_panen(nilai):
@@ -152,7 +146,7 @@ def encode_label(label):
     elif label == 'Tinggi':
         return 1
 
-# Streamlit UI
+
 st.title('Klasifikasi dan Encoding Data (Hanya datasetTest)')
 st.write("### Dataset Testing Awal")
 st.write(datasetTest.head())
