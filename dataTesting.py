@@ -147,7 +147,7 @@ def encode_label(label):
         return 1
 
 
-st.title('Klasifikasi dan Encoding Data (Hanya datasetTest)')
+st.title('Klasifikasi dan Encoding Data')
 st.write("### Dataset Testing Awal")
 st.write(datasetTest.head())
 
