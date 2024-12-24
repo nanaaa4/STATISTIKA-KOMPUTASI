@@ -1,6 +1,5 @@
 import pandas as pd
 import streamlit as st
-# from naive_bayes import data_baru, prior, likelihoods, features
 
 datasetTrain = pd.read_csv('padi_produktifitas_training20 (1).csv', delimiter=';', encoding='utf-8')
 
@@ -20,7 +19,6 @@ def clean_columnTrain(column):
         column = pd.to_numeric(column, errors='coerce')
     return column
 
-# Streamlit UI
 st.title('Proses Pembersihan Data')
 st.write("### Dataset Training Awal")
 st.write(datasetTrain.head())
@@ -148,7 +146,6 @@ def encode_label(label):
     elif label == 'Tinggi':
         return 1
 
-# Streamlit UI
 st.title('Klasifikasi dan Encoding Data (Hanya datasetTrain)')
 st.write("### Dataset Training Awal")
 st.write(datasetTrain.head())
@@ -197,9 +194,6 @@ for feature in features:
         likelihood = datasetTrain[datasetTrain['produktivitas_padi'] == label][feature].value_counts(normalize=True)
         likelihoods[feature][label] = likelihood
 
-        # print(f"\nP(fitur = {feature} | Produktivitas Padi = {label}):")
-        # print(likelihood)
-# Streamlit UI
 st.title('Probabilitas Prior dan Likelihood (Naive Bayes)')
 
 # Menampilkan Probabilitas Prior
@@ -207,7 +201,7 @@ st.write("### Probabilitas Prior:")
 st.write(prior)
 
 # Menampilkan Probabilitas Likelihood
-st.write("### Probabilitas Likelihood (P(fitur | Produktivitas Padi)):")
+st.write("### Probabilitas Likelihood:")
 
 for feature in features:
     st.write(f"**Feature: {feature}**")
