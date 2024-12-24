@@ -146,7 +146,7 @@ def encode_label(label):
     elif label == 'Tinggi':
         return 1
 
-st.title('Klasifikasi dan Encoding Data (Hanya datasetTrain)')
+st.title('Klasifikasi dan Encoding Data')
 st.write("### Dataset Training Awal")
 st.write(datasetTrain.head())
 
